@@ -8,7 +8,7 @@ document.addEventListener('copy', (event) => {
 
 💡 著作权归 hualess 所有，转载粘贴请注明出处
 License: CC-BY-SA-4.0
-Copyright: resume.congm.in
+Copyright: resume.hualess.cn
 Github: github.com/cong-min/resume
 `;
   clipboardData.setData('text/plain', msg);
