@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>简历 | 驾狗师 - hualess</title>
     <script type="module" src="./main.ts"></script>
-    <script src="./handle.js"></script>
+    <script src="https://static.hualess.cn/js/crypto-js.min.js"></script>
   </head>
   <body>
     <!--[if IE]>
@@ -21,9 +21,6 @@
         <section class="title">
           <div class="name">
             <h1>刘保华<small>hualess</small></h1>
-            <img
-              src="https://static.hualess.cn/wx/jgs_gzh.jpg"
-              style="width: 50px; height: 50px; margin-right: 50px" />
           </div>
           <div class="job">
             <h2>高级研发工程师<small> / 北京</small></h2>
@@ -274,11 +271,8 @@
       </div>
     </div>
     <footer class="github-footer">
-      <a
-        class="footer-link"
-        href="https://github.com/cong-min/resume"
-        target="_blank">
-        <i class="icon icon-link"></i> github.com/cong-min/resume
+      <a class="footer-link" href="https://resume.hualess.cn" target="_blank">
+        <i class="icon icon-link"></i> https://resume.hualess.cn
       </a>
     </footer>
     <footer class="print-footer">
@@ -287,19 +281,12 @@
       </a>
     </footer>
     <footer class="license-footer">
-      <a
-        class="footer-link"
-        href="https://github.com/cong-min/resume/blob/master/LICENSE"
-        target="_blank">
-        License: CC-BY-SA-4.0
-      </a>
+      <a class="footer-link" href="" target="_blank"> License: hualess.cn </a>
     </footer>
-    <a
-      class="pdf"
-      href="javascript:void(0);"
-      onclick="alert('简历已隐藏: PDF简历下载已关闭')">
+    <a class="pdf" href="javascript:void(0);" onclick="download()">
       <i class="icon icon-download"></i> PDF简历
     </a>
+    <a class="edit" href="javascript:void(0);"> 编辑 </a>
   </body>
   <script>
     let uid = getUrlParam('uid');
@@ -309,6 +296,44 @@
       target.style.display = 'none';
       let content = document.getElementById('content'); //选取id为test的元素
       content.style.height = 'auto';
+    }
+
+    function download() {
+      let uid = getUrlParam('uid');
+      let gen = genUid();
+      if (uid === gen) {
+        window.open('https://resume.hualess.cn/hualess.pdf');
+      } else {
+        alert('简历已隐藏: PDF简历下载已关闭');
+      }
+    }
+
+    const editBtn = document.querySelector('.edit');
+    editBtn.onclick = function () {
+      if (document.designMode === 'off') {
+        document.designMode = 'on';
+        this.style.backgroundColor = '#999999';
+        this.innerText = '退出编辑';
+      } else {
+        document.designMode = 'off';
+        this.innerText = '编辑';
+        this.style.backgroundColor = '#00b38a';
+      }
+    };
+
+    //获取地址栏属性，name 为参数名称
+    function getUrlParam(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)'); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg); //匹配目标参数
+      if (r != null) return unescape(r[2]);
+      return null; //返回参数值
+    }
+
+    function genUid() {
+      let currentDate = new Date();
+      let month = currentDate.getMonth();
+      const secretKey = '3u99x5hi1es4bjsd0y8at2yrz56s'; // 如果需要可以作为密钥
+      return CryptoJS.MD5(month + secretKey).toString();
     }
   </script>
 </html>

@@ -1,3 +1,4 @@
+/*
 document.write("<script language=javascript src='./crypto-js.min.js'></script>");
 
 function show() {
@@ -24,3 +25,4 @@ function genUid() {
   const secretKey = '3u99x5hi1es4bjsd0y8at2yrz56s'; // 如果需要可以作为密钥
   return CryptoJS.MD5(month + secretKey).toString();
 }
+*/
